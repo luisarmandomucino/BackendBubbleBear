@@ -28,7 +28,7 @@ public class Users {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Long id;
+	private int id;
 	
 	@Column(name = "fullname", nullable = false, length=100)
 	private String fullname;
@@ -47,8 +47,8 @@ public class Users {
 	
 	@Column(name = "role")
 	private Boolean role;
-	
-	/* public Users(String fullname, String email, String password, Date birthday, String phone_number, Boolean role) {
+
+	public Users(String fullname, String email, String password, Date birthday, String phone_number, Boolean role) {
 	    
 		this.fullname = fullname;
 	    this.email = email;
@@ -57,12 +57,9 @@ public class Users {
 	    this.phone_number= phone_number;
 	    this.role= role;
 	  
-		
 	}
 	
 	
-	@OneToMany(mapperdBy = "users")
-	@JsonIgnoreProperties("users");*/
+	//@OneToMany(mapperdBy = "users")  @JsonIgnoreProperties("users");
 
-	
 }
