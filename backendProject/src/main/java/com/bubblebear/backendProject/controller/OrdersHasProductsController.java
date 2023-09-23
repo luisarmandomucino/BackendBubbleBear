@@ -34,7 +34,9 @@ public class OrdersHasProductsController {
 
     @PutMapping("{id}")
     public OrdersHasProducts updateOrdersHasProducts(@PathVariable long id, @RequestBody OrdersHasProducts updatedEntry) {
-        return ordersHasProductsRepository.save(updatedEntry);
+        OrdersHasProducts existingOrder = ordersHasProductsRepository.findById(id);
+        existingOrder.setOrder(updatedEntry.getOrder());
+		return ordersHasProductsRepository.save(existingOrder);
     }
 
     @DeleteMapping("{id}")
