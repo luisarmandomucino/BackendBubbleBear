@@ -26,4 +26,11 @@ public class Categories {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "categories_id")
 	private long id;
+	
+	@Column (name = "sale")
+	private boolean sale;  
+	
+	@Column (name = "outstanding")
+	private boolean outstanding;  
 }
+
