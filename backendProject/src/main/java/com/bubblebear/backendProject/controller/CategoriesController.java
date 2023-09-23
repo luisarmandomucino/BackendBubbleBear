@@ -29,6 +29,7 @@ public class CategoriesController {
 		
 	}
 	
+	
 	@GetMapping("{id}")
 	public Categories getCategoryById(@PathVariable long id) {
 	    Categories category = categoriesRepository.findById(id);
@@ -45,7 +46,10 @@ public class CategoriesController {
 	
 	@PutMapping("{id}")
 	public Categories updateCategory(@PathVariable long id, @RequestBody Categories category) {
-		return category;
+		Categories existingCategory = categoriesRepository.findById(id);
+		existingCategory.setOutstanding(category.isOutstanding());
+		existingCategory.setSale(category.isSale());
+		return categoriesRepository.save(existingCategory);
 	}
 
 	@DeleteMapping("{id}")
