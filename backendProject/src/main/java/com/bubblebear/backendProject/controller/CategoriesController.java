@@ -4,6 +4,7 @@ package com.bubblebear.backendProject.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,10 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bubblebear.backendProject.entity.Categories;
+import com.bubblebear.backendProject.repository.CategoriesRepository;
 
 @RestController
-@RequestMapping
+@RequestMapping ("api/categories")
 public class CategoriesController {
+	@Autowired
+	CategoriesRepository categoriesRepository;
 	
 	@GetMapping
 	public List<Categories> getAllCategories() {
@@ -27,19 +31,20 @@ public class CategoriesController {
 	
 	@GetMapping("{id}")
 	public Categories getCategoryById(@PathVariable long id) {
-		return null;
+	    Categories category = categoriesRepository.findById(id);
+	    return category;
 	}
 	
 	
 	
-	@PostMapping("{id}")
-	public Categories updateCategory( @RequestBody Categories category) {
-		return category;
+	@PostMapping()
+	public Categories createCategory( @RequestBody Categories createdCategory) {
+		return createdCategory;
 	}
 	
 	
 	@PutMapping("{id}")
-	public Categories createCategory(@PathVariable long id, @RequestBody Categories category) {
+	public Categories updateCategory(@PathVariable long id, @RequestBody Categories category) {
 		return category;
 	}
 

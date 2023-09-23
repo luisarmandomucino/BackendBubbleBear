@@ -27,10 +27,10 @@ public class Categories {
 	@Column(name = "categories_id")
 	private long id;
 	
-	@Column (name = "sale")
+	@Column (name = "sale", nullable = false)
 	private boolean sale;  
 	
-	@Column (name = "outstanding")
+	@Column (name = "outstanding", nullable = false)
 	private boolean outstanding;  
 }
 
