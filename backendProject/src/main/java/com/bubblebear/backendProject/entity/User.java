@@ -13,8 +13,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
-
 @Entity
 @Getter
 @Setter
@@ -22,43 +20,32 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Table(name = "users")
-public class Users {
+public class User {
 	
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "id")
-	private int id;
+	@Column(name = "user_id")
+	private Long id;
 	
-	@Column(name = "fullname", nullable = false, length=100)
+	@Column(name = "fullname")
 	private String fullname;
 	
-	@Column(name = "email", nullable = false, updatable = false, unique = true)
+	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "password", nullable = false)
+	@Column(name = "password")
 	private String password;
 	
 	@Column(name = "birthday" )
 	private Date birthday;
 	
-	@Column(name = "phone_number", nullable = false )
+	@Column(name = "phone_number")
 	private String phone_number;
 	
 	@Column(name = "role")
 	private Boolean role;
 
-	public Users(String fullname, String email, String password, Date birthday, String phone_number, Boolean role) {
-	    
-		this.fullname = fullname;
-	    this.email = email;
-	    this.password= password;
-	    this.birthday= birthday;
-	    this.phone_number= phone_number;
-	    this.role= role;
-	  
-	}
-	
 	
 	//@OneToMany(mapperdBy = "users")  @JsonIgnoreProperties("users");
 
