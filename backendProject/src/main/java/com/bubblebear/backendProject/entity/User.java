@@ -5,13 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-@Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-@Table(name="users")
+//@Entity
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Data
+//@Table(name="users")
 public class User {
 
-
+	
 
 }
