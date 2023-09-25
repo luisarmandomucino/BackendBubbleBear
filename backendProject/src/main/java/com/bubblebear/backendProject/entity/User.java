@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 
 
 
-//@AllArgsConstructor
-//@NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Data
-//@Table(name="users")
+@Table(name="users")
 public class User {
 	@Id
 	@Column(name="user_id")
