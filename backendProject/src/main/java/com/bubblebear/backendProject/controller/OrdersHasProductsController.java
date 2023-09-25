@@ -43,4 +43,4 @@ public class OrdersHasProductsController {
     public void deleteOrdersHasProducts(@PathVariable long id) {
         ordersHasProductsRepository.deleteById(id);
     }
-}
+} 
