@@ -1,4 +1,5 @@
 SELECT * FROM bbdatabase.products;
+ALTER TABLE products AUTO_INCREMENT = 1;
 INSERT 
 INTO products (name, price, size, stock, hide, description, product_photo, fk_categories_id, flavor)
 VALUES ("Crazy Ichigo", 80, "Mediano", 400, 1, "Rica bebida de Ichigo", "photo", 1, "fresa"); 

@@ -12,14 +12,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
+@Entity
 @Getter
 @Setter
-@Entity
+
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name="Categories")
+//@AllArgsConstructor
+//@NoArgsConstructor
+@Table(name="categories")
 
 public class Categories {
 	@Id
