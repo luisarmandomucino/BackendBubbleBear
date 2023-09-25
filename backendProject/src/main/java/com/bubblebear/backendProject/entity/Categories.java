@@ -17,8 +17,8 @@ import lombok.Setter;
 @Setter
 
 @Data
-//@AllArgsConstructor
-//@NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="categories")
 
 public class Categories {
