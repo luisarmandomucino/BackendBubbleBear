@@ -22,19 +22,20 @@ import lombok.ToString;
 @Table(name = "users")
 public class User {
 	
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
+	
 	@Column(name = "user_id")
 	private Long id;
 	
-	@Column(name = "fullname")
+	@Column(name = "fullname", nullable = false, length = 150)
 	private String fullname;
 	
-	@Column(name = "email")
+	@Column(name = "email", nullable = false, length =150, unique = true)
 	private String email;
 	
-	@Column(name = "password")
+	@Column(name = "password", nullable = false, length = 200)
 	private String password;
 	
 	@Column(name = "birthday" )
@@ -45,8 +46,21 @@ public class User {
 	
 	@Column(name = "role")
 	private Boolean role;
-
 	
-	//@OneToMany(mapperdBy = "users")  @JsonIgnoreProperties("users");
+
+	public User(String fullname, String email, String password, 
+			Date birthday, String phone_number, Boolean role) {
+		this.fullname = fullname;
+		this.email = email;
+		this.password = password;
+		this.birthday = birthday;
+		this.phone_number = phone_number;
+		this.role = role;
+	}
+
+	/*
+	@OneToMany(mapperdBy = "user")  
+	@JsonIgnoreProperties("user")
+	private List<Orders> orders = new ArrayList<>(); */
 
 }
