@@ -29,8 +29,8 @@ public class CategoriesController {
 	
 	@GetMapping
 	public List<Categories> getAllCategories() {
-		return null;
-		
+		List<Categories> categories = (List <Categories>) categoriesRepository.findAll();
+		return categories;
 	}
 	
 	
