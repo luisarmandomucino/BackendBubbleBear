@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import com.bubblebear.backendProject.Repository.UserRepository;
+import com.bubblebear.backendProject.repository.UserRepository;
 import com.bubblebear.backendProject.entity.User;
 
 @Controller
