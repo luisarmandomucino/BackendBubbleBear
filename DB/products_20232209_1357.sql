@@ -1,12 +1,14 @@
 SELECT * FROM bbdatabase.products;
+DELETE FROM products;
 ALTER TABLE products AUTO_INCREMENT = 1;
+
 INSERT 
 INTO products (name, price, size, stock, hide, description, product_photo, fk_categories_id, flavor)
 VALUES ("Crazy Ichigo", 80, "Mediano", 400, 1, "Rica bebida de Ichigo", "photo", 1, "fresa"); 
 
 INSERT 
 INTO products (name, price, size, stock, hide, description, product_photo, fk_categories_id, flavor)
-VALUES ("ExplosiÃ³n de Chocolate", 95, "Grande", 150, 1, "Rica bebida de Chocolate", "photo", 2, "fresa"); 
+VALUES ("Explosión de Chocolate", 95, "Grande", 150, 1, "Rica bebida de Chocolate", "photo", 2, "fresa"); 
 
 INSERT 
 INTO products (name, price, size, stock, hide, description, product_photo, fk_categories_id, flavor)
