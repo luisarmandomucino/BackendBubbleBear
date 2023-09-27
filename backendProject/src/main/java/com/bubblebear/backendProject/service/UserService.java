@@ -3,8 +3,9 @@ package com.bubblebear.backendProject.service;
 import java.util.List;
 
 import com.bubblebear.backendProject.entity.User;
+import com.bubblebear.backendProject.entity.limits.UserFieldLimits;
 
-public interface UserService {
+public interface UserService extends UserFieldLimits{
 
 	User createUser(User user); 
 

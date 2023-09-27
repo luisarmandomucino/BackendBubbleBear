@@ -12,70 +12,51 @@ import com.bubblebear.backendProject.Repository.UserRepository;
 import com.bubblebear.backendProject.entity.User;
 
 
-@Service // componente servicio--logica negocio
+@Service 
 public class UserServiceImpl implements UserService {
 	
-	@Autowired //inyeccion para manipular datos del repository
+	@Autowired 
 	UserRepository userRepository;
 	
+	@Override
+	public User createUser(User user) {
+		return saveUser(user); 
+	}
+
+	public User saveUser(User user) {
+		return userRepository.save(user);
+	}
 	
 	@Override
-	public User createUser(User user) {//el metodo recibe como parametro al usuario
-		return saveUser(user); //lama al segundo metodo
-	}
-
-	public User saveUser(User user) {//este metodo recibe el parametro del usuario
-		return userRepository.save(user);//guarda el nuevo usuario en el userRepository
-	}
-	
-		@Override//trae todos los usuarios
 	public List<User> getAllUsers() { 
-		return (List<User>) userRepository.findAll();
+		return userRepository.findAll();
 	}
 	
-	
-	@Override //busca usuarios por id
+	@Override 
 	public User getUserById(long id) {
 		return userRepository.findById(id);
+	}
 
-	}
-	
-	/*
-	@Override // Anneth
-	public User getUserById(long id) {
-		return userRepository.findById(id)
-				.orElseThrow( ()-> new IllegalStateException("User does not exist with id "+ id) );
-	
-	}
-	*/
-	
-	//metodo para buscarlo por email, para el login
 	@Override 
 	public User getUserByEmail(String email) {
 		return userRepository.findByEmail(email);
 	}
 	
-	
-	@Override //modifica datos
+	@Override 
 	public User updateUser(User user, long id) {
-		
 		User existingUser = userRepository.findById(id);
-		
 		existingUser.setFullname(user.getFullname());
 		existingUser.setEmail(user.getEmail());
-		existingUser.setPassword(user.getPassword());
 		existingUser.setBirthday(user.getBirthday());
 		existingUser.setPhone_number(user.getPhone_number());
-		
 		return saveUser(existingUser);
 	}
 	
-	@Override //elimina el usuario
+	@Override 
 	public void deleteUser(Long id) {
 		User existingUser = userRepository.findById(id)
 				.orElseThrow( ()-> new IllegalStateException("User does not exist with id "+ id) );
 		userRepository.delete(existingUser);
 	}
-	
 	
 }

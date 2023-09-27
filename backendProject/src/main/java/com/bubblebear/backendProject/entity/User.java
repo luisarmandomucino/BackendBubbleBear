@@ -1,6 +1,9 @@
 package com.bubblebear.backendProject.entity;
 
 import java.util.Date;
+
+import com.bubblebear.backendProject.entity.limits.UserFieldLimits;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,7 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Table(name = "users")
-public class User {
+public class User implements UserFieldLimits {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -29,19 +32,19 @@ public class User {
 	@Column(name = "user_id")
 	private Long id;
 	
-	@Column(name = "fullname", nullable = false, length = 150)
+	@Column(name = "fullname", nullable = false, length = FULLNAME_DB_LENGTH)
 	private String fullname;
 	
-	@Column(name = "email", nullable = false, length =150, unique = true)
+	@Column(name = "email", nullable = false, length = EMAIL_DB_LENGTH, unique = true)
 	private String email;
 	
-	@Column(name = "password", nullable = false, length = 200)
+	@Column(name = "password", nullable = false, length = PASSWORD_DB_LENGTH)
 	private String password;
 	
 	@Column(name = "birthday" )
 	private Date birthday;
 	
-	@Column(name = "phone_number")
+	@Column(name = "phone_number", length = PHONE_NUMBER_DB_LENGTH)
 	private String phone_number;
 	
 	@Column(name = "role")
