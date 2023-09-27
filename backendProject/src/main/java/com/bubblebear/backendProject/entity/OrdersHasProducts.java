@@ -21,7 +21,7 @@ public class OrdersHasProducts {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "fk_product_id")
+    @Column(name = "id")
     private long id;
 
     @Column(name = "quantity", nullable = false)
@@ -30,7 +30,9 @@ public class OrdersHasProducts {
     @Column(name = "price_product", nullable = false)
     private int priceProduct;
 
-
+    @Column(name = "fk_product_id", nullable = false)
+    private int product;
+    
     @Column(name = "fk_order_id", nullable = false)
     private int order;
 

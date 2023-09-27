@@ -1,13 +1,13 @@
 package com.bubblebear.backendProject.entity;
 
-import jakarta.persistence.Column;
+import java.util.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,22 +15,23 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="categories")
+@Table(name="orders")
 
-public class Categories {
+
+public class Orders {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "categories_id")
-	private long id; 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer order_id;
+	private Date purchase_date;
+	private int total_amount;
+	private int fk_user_id;
 	
-	@Column (name = "sale", nullable = false)
-	private boolean sale;  
 	
-	@Column (name = "outstanding", nullable = false)
-	private boolean outstanding;  
-}
 
+	
+	
+	
+}

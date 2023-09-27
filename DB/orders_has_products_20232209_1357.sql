@@ -1,7 +1,5 @@
 USE bbdatabase;
-
-SELECT * FROM bbdatabase.orders_has_products;
-
+SELECT * FROM orders_has_products;
 
 INSERT INTO orders_has_products (quantity, fk_order_id, fk_product_id, price_product)
 	VALUES ( 3, 2, 2, 80);
