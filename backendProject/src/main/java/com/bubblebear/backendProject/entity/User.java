@@ -30,7 +30,7 @@ public class User implements UserFieldLimits {
 	
 	
 	@Column(name = "user_id")
-	private Long id;
+	private int id;
 	
 	@Column(name = "fullname", nullable = false, length = FULLNAME_DB_LENGTH)
 	private String fullname;
