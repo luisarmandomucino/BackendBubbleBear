@@ -13,3 +13,10 @@ public interface OrdersHasProductService {
 	void deleteOrderHasProduct(long orderId, long productId);
 
 }
+
+
+
+
+
+
+
