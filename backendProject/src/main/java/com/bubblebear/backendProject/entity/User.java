@@ -1,6 +1,9 @@
 package com.bubblebear.backendProject.entity;
 
 import java.util.Date;
+
+import com.bubblebear.backendProject.entity.limits.UserFieldLimits;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,33 +23,47 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Table(name = "users")
-public class User {
+public class User implements UserFieldLimits {
 	
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
+	
 	@Column(name = "user_id")
 	private Long id;
 	
-	@Column(name = "fullname")
+	@Column(name = "fullname", nullable = false, length = FULLNAME_DB_LENGTH)
 	private String fullname;
 	
-	@Column(name = "email")
+	@Column(name = "email", nullable = false, length = EMAIL_DB_LENGTH, unique = true)
 	private String email;
 	
-	@Column(name = "password")
+	@Column(name = "password", nullable = false, length = PASSWORD_DB_LENGTH)
 	private String password;
 	
 	@Column(name = "birthday" )
 	private Date birthday;
 	
-	@Column(name = "phone_number")
+	@Column(name = "phone_number", length = PHONE_NUMBER_DB_LENGTH)
 	private String phone_number;
 	
-	@Column(name = "role")
-	private Boolean role;
-
+	@Column(name = "role", columnDefinition = "TINYINT default 0")
+	private int role;
 	
-	//@OneToMany(mapperdBy = "users")  @JsonIgnoreProperties("users");
+
+	public User(String fullname, String email, String password, 
+			Date birthday, String phone_number, int role) {
+		this.fullname = fullname;
+		this.email = email;
+		this.password = password;
+		this.birthday = birthday;
+		this.phone_number = phone_number;
+		this.role = role;
+	}
+
+	/*
+	@OneToMany(mapperdBy = "user")  
+	@JsonIgnoreProperties("user")
+	private List<Orders> orders = new ArrayList<>(); */
 
 }
