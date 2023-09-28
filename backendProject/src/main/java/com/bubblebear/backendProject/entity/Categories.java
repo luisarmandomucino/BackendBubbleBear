@@ -32,5 +32,6 @@ public class Categories {
 	
 	@Column (name = "outstanding", nullable = false)
 	private boolean outstanding;  
+
 }
 

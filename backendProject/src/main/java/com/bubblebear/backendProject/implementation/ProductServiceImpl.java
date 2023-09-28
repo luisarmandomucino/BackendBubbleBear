@@ -48,7 +48,7 @@ public class ProductServiceImpl implements ProductService{
 		existingProduct.setHide(producto.getHide());
 		existingProduct.setDescription(producto.getDescription());
 		existingProduct.setPhoto(producto.getPhoto());
-		existingProduct.setCategoryId(producto.getCategoryId());
+		existingProduct.setCategory(producto.getCategory());
 		existingProduct.setFlavor(producto.getFlavor());
 		
 		return productRepository.save(existingProduct);
@@ -56,8 +56,8 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public void deleteProduct(Long id) {
-		Product existingProduct = productRepository.findById(id).
-				orElseThrow( ()-> new IllegalStateException("Product does not exist with id "+ id) );
+		Product existingProduct = productRepository.findById(id)
+				.orElseThrow( ()-> new IllegalStateException("Product does not exist with id "+ id) );
 		productRepository.delete(existingProduct);
 	}
 

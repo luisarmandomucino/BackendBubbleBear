@@ -1,7 +1,5 @@
 package com.bubblebear.backendProject.entity;
 
-import java.util.Locale.Category;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
@@ -9,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -45,21 +44,19 @@ public class Product {
 	private long stock;
 	
 	@Column(name = "hide", nullable = false)
-	private long hide;
+	private int hide;
 	
 	@Column(name = "description", nullable = false, length=300)
 	private String description;
 	
-	@Column(name = "product_photo", nullable = false, length=65535)
+	@Column(name = "product_photo", nullable = false, length=150)
 	private String photo;
-	
-	@Column(name = "fk_categories_id", nullable = false)
-	private long categoryId;
 	
 	@Column(name = "flavor", nullable = false, length=45)
 	private String flavor;
 	
-	/*@ManyToOne
+	@ManyToOne
+	@JoinColumn(name="fk_categories_id")
 	@JsonIgnoreProperties("products")
-	private Category category;*/
+	private Categories category;
 }
