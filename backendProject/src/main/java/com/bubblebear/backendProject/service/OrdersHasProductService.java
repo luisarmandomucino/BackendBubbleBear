@@ -1,5 +1,7 @@
 package com.bubblebear.backendProject.service;
 
+import java.util.List;
+
 import com.bubblebear.backendProject.entity.OrdersHasProducts;
 
 public interface OrdersHasProductService {
@@ -11,6 +13,10 @@ public interface OrdersHasProductService {
 	OrdersHasProducts updateOrderHasProduct(OrdersHasProducts orderProduct, long orderId, long productId);
 	
 	void deleteOrderHasProduct(long orderId, long productId);
+
+	List<OrdersHasProducts> findAll();
+
+	List<OrdersHasProducts> getAllOrdersHasProducts();
 
 }
 

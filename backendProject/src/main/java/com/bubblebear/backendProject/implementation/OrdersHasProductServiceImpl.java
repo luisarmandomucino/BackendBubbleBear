@@ -4,6 +4,8 @@ import com.bubblebear.backendProject.entity.OrdersHasProducts;
 import com.bubblebear.backendProject.repository.OrdersHasProductsRepository;
 import com.bubblebear.backendProject.service.OrdersHasProductService;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,17 +33,26 @@ public class OrdersHasProductServiceImpl implements OrdersHasProductService {
     public OrdersHasProducts updateOrderHasProduct(OrdersHasProducts orderProduct, long orderId, long productId) {
         OrdersHasProducts existingOrderProduct = ordersHasProductsRepository.findById(orderId);
         if (existingOrderProduct != null) {
-            // Actualiza los campos según sea necesario
             existingOrderProduct.setQuantity(orderProduct.getQuantity());
             existingOrderProduct.setPriceProduct(orderProduct.getPriceProduct());
-            // Guarda la actualización
             return ordersHasProductsRepository.save(existingOrderProduct);
         }
-        return null; // Puedes manejar el caso de que no se encuentre la relación de otra manera
+        return null;
     }
 
     @Override
     public void deleteOrderHasProduct(long orderId, long productId) {
         ordersHasProductsRepository.deleteById(orderId);
     }
+
+    @Override
+    public List<OrdersHasProducts> getAllOrdersHasProducts() {
+        return (List<OrdersHasProducts>) ordersHasProductsRepository.findAll();
+    }
+
+	@Override
+	public List<OrdersHasProducts> findAll() {
+		return null;
+	}
+
 }
