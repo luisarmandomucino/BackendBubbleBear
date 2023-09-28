@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bubblebear.backendProject.Repository.UserRepository;
+import com.bubblebear.backendProject.repository.UserRepository;
 import com.bubblebear.backendProject.dto.UserDto;
 import com.bubblebear.backendProject.entity.*;
 

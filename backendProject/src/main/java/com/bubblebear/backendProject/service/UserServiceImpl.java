@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bubblebear.backendProject.Repository.UserRepository;
+import com.bubblebear.backendProject.repository.UserRepository;
 import com.bubblebear.backendProject.entity.User;
 
 
