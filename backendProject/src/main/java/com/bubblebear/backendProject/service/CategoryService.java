@@ -6,15 +6,17 @@ import com.bubblebear.backendProject.entity.Categories;
 
 public interface CategoryService  {
 
+	Categories createCategory(Categories category);
+
+	Categories getCategoryById(Long id);
+
 	List<Categories> getAllCategories();
 
-	Categories getCategoryByBid (long id);
-	
-	Categories createCategory (Categories category);
-	
-	Categories updateCategory (long id);
-	
-	void deleteCategory (long id);
+	Categories updateCategory(Categories category, Long id);
+
+	void deleteCategory(Long id);
+
+
 	
 	
 }

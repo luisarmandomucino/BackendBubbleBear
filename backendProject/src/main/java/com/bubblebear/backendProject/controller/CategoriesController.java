@@ -12,68 +12,56 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bubblebear.backendProject.entity.Categories;
-import com.bubblebear.backendProject.repository.CategoriesRepository;
+import com.bubblebear.backendProject.service.CategoryService;
 
-import jakarta.persistence.EntityNotFoundException;
+
 
 @RestController
 @RequestMapping ("api/categories")
 public class CategoriesController {
 	@Autowired
-	CategoriesRepository categoriesRepository;
+	CategoryService categoriesService;
 	
 	@GetMapping
-	public List<Categories> getAllCategories() {
-		List<Categories> categories = (List <Categories>) categoriesRepository.findAll();
-		return categories;
+	public ResponseEntity <List<Categories>> getAllCategories() {
+		List <Categories> getAllCategories = categoriesService.getAllCategories();
+		return new ResponseEntity<>(getAllCategories, HttpStatus.OK);
 	}
 	
 	
 	@GetMapping("{id}")
-	public Categories getCategoryById(@PathVariable long id) {
-	    Categories category = categoriesRepository.findById(id);
-	    return category;
+	public ResponseEntity <Categories> getCategoryById(@PathVariable long id) {
+		Categories getCategoryById = categoriesService.getCategoryById(id);
+		return new ResponseEntity<>(getCategoryById, HttpStatus.OK);
 	}
+	
 	
 	
 	
 	@PostMapping()
-	public ResponseEntity<Categories> createCategory( @RequestBody Categories category) {
-		Categories savedCategory = categoriesRepository.save(category);
-		return new ResponseEntity<>(savedCategory, HttpStatus.CREATED) ;
+	public ResponseEntity <Categories> createCategory (Categories category) {
+		Categories createdCategory = categoriesService.createCategory(category);
+		return new ResponseEntity<>(createdCategory, HttpStatus.OK);
 	}
 	
 	
 	@PutMapping("{id}")
-	public Categories updateCategory(@PathVariable long id, @RequestBody Categories category) {
-		Categories existingCategory = categoriesRepository.findById(id);
-		if (existingCategory == null) {
-	        throw new IllegalStateException("Category not found");
-	    }
-		existingCategory.setOutstanding(category.isOutstanding());
-		existingCategory.setSale(category.isSale());
-		return categoriesRepository.save(existingCategory);
+	public ResponseEntity <Categories> updateCategory (Categories category, @PathVariable long id) {
+		Categories updatedCategory = categoriesService.updateCategory(category, id);
+		return new ResponseEntity<>(updatedCategory, HttpStatus.OK);
 	}
+	
+	
 
 	@DeleteMapping("{id}")
-	public void deleteCategory(@PathVariable long id) {
-	    Categories deletedCategory = categoriesRepository.findById(id);
-
-	    if (deletedCategory == null) {
-	        throw new EntityNotFoundException("Category not found");
-	    }
-
-	    try {
-	        categoriesRepository.delete(deletedCategory);
-	    } catch (Exception e) {
-	       
-	        throw new RuntimeException("Failed to delete category: " + e.getMessage());
-	    }
+	public void deleteCategory (Categories category, @PathVariable long id) {
+		categoriesService.deleteCategory(id);
+		
 	}
 
 	
