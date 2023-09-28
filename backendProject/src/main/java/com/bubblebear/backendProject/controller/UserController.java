@@ -7,56 +7,44 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import com.bubblebear.backendProject.Repository.UserRepository;
+//import com.bubblebear.backendProject.Repository.UserRepository;
 import com.bubblebear.backendProject.entity.User;
+import com.bubblebear.backendProject.service.UserService;
 
 @Controller
-@RequestMapping("api/v1/user") //localhost:8080/api/v1/user
+@RequestMapping("api/user") //localhost:8080/api/user
 public class UserController {
 
 	@Autowired
-	UserRepository userRepository;
-	
-	@GetMapping("{id}")//localhost:8080/api/v1/user/2
-	public ResponseEntity<User> getUserById(@PathVariable long id) { 
-		   User user = userRepository.getUserById(id);
-		   return new ResponseEntity<>(user, HttpStatus.OK);
-	}
-	
-	@GetMapping //localhost:8080/api/v1/user
-	public ResponseEntity<List<User>> getAllUsers(){
-		List<User> users = (List<User>) userRepository.findAll(); 
-		return ResponseEntity.ok(users);
-	}
-	
-	@PostMapping  //localhost:8080/api/v1/user
-	public ResponseEntity<User> creatUser(@Validated @RequestBody User usersDto) {
-		User savedUsers = userRepository.save(usersDto);
+	UserService userService;
+
+	@PostMapping  //localhost:8080/api/user
+	public ResponseEntity<User> creatUser(@Validated @RequestBody User user) {
+		User savedUsers = userService.createUser(user);
 		return new ResponseEntity<>(savedUsers, HttpStatus.CREATED);
 	}
-
-	@PutMapping("{id}")//localhost:8080/api/v1/user/6
-	public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable long id) {
-		User existingUser = userRepository.findById(id);
-		
-		if(existingUser == null ) {
-			return ResponseEntity.notFound().build();
-		}
-		
-		existingUser.setFullname(user.getFullname());
-		existingUser.setEmail(user.getEmail());
-		existingUser.setPassword(user.getPassword());
-		existingUser.setBirthday(user.getBirthday());
-		existingUser.setPhone_number(user.getPhone_number());
-		existingUser.setRole(user.getRole());
-		
-		User updatedUser = userRepository.save(existingUser);
-		return ResponseEntity.ok(updatedUser);
+	
+	@GetMapping("{id}")//localhost:8080/api/user/2
+	public ResponseEntity<User> getUserById(@PathVariable long id) { 
+	User user = userService.getUserById(id);
+	return new ResponseEntity<>(user, HttpStatus.OK);
 	}
-	 
-	@DeleteMapping("{id}") //localhost:8080/api/v1/user/9
+	
+	@GetMapping //localhost:8080/api/user
+	public ResponseEntity<List<User>> getAllUsers(){
+		List<User> users = userService.getAllUsers(); 
+		return new ResponseEntity<>(users, HttpStatus.OK);
+	}
+
+	@PutMapping("{id}")//localhost:8080/api/user/6
+	public ResponseEntity<User> updateUser(@RequestBody @Validated User user, @PathVariable long id) {
+		User updatedUser = userService.updateUser(user, id);
+		return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("{id}") //localhost:8080/api/user/9
 	public ResponseEntity<String> deleteUsers(@PathVariable long id) {
-		userRepository.deleteById(id);
+		userService.deleteUser(id);
 		return new ResponseEntity<>("User id " + id + " successfully deleted", HttpStatus.OK);
 	}
 
