@@ -52,7 +52,10 @@ public class WebSecurityConfig {
 		http.authorizeHttpRequests( authorize -> authorize
 				// STEP 2.1 configurar las reglas de autorización para las solicitudes HTTP
 				.requestMatchers(  "/api/products" ).permitAll()
+				.requestMatchers( HttpMethod.POST, "/api/products" ).permitAll()
 				.requestMatchers( "/api/orders" ).permitAll()
+				.requestMatchers( "/api/user" ).permitAll()
+				.requestMatchers( "api/ordershasproducts" ).permitAll()
 				.requestMatchers( HttpMethod.POST, "/api/v2/users" ).permitAll()
 				//.requestMatchers( "/api/orders/**" ).hasRole("ADMIN")
 				//.requestMatchers( "/api/v2/users/**" ).hasRole("ADMIN")	
