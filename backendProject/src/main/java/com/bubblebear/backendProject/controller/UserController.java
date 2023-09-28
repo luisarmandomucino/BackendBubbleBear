@@ -7,35 +7,35 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import com.bubblebear.backendProject.Repository.UserRepository;
+import com.bubblebear.backendProject.repository.UserRepository;
 import com.bubblebear.backendProject.entity.User;
 
 @Controller
-@RequestMapping("api/v1/user") //localhost:8080/api/v1/user
+@RequestMapping("api/user") //localhost:8080/api/user
 public class UserController {
 
 	@Autowired
 	UserRepository userRepository;
 	
-	@GetMapping("{id}")//localhost:8080/api/v1/user/2
+	@GetMapping("{id}")//localhost:8080/api/user/1
 	public ResponseEntity<User> getUserById(@PathVariable long id) { 
 		   User user = userRepository.getUserById(id);
 		   return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 	
-	@GetMapping //localhost:8080/api/v1/user
+	@GetMapping 
 	public ResponseEntity<List<User>> getAllUsers(){
 		List<User> users = (List<User>) userRepository.findAll(); 
 		return ResponseEntity.ok(users);
 	}
 	
-	@PostMapping  //localhost:8080/api/v1/user
+	@PostMapping 
 	public ResponseEntity<User> creatUser(@Validated @RequestBody User usersDto) {
 		User savedUsers = userRepository.save(usersDto);
 		return new ResponseEntity<>(savedUsers, HttpStatus.CREATED);
 	}
 
-	@PutMapping("{id}")//localhost:8080/api/v1/user/6
+	@PutMapping("{id}")
 	public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable long id) {
 		User existingUser = userRepository.findById(id);
 		
@@ -54,7 +54,7 @@ public class UserController {
 		return ResponseEntity.ok(updatedUser);
 	}
 	 
-	@DeleteMapping("{id}") //localhost:8080/api/v1/user/9
+	@DeleteMapping("{id}") 
 	public ResponseEntity<String> deleteUsers(@PathVariable long id) {
 		userRepository.deleteById(id);
 		return new ResponseEntity<>("User id " + id + " successfully deleted", HttpStatus.OK);

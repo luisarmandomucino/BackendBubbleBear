@@ -27,11 +27,6 @@ public class Orders {
 	private Integer order_id;
 	private Date purchase_date;
 	private int total_amount;
-	private int fk_user_id;
-	
-	
-
-	
-	
+	private int fk_user_id;	
 	
 }

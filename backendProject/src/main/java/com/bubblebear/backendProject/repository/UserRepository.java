@@ -1,4 +1,4 @@
-package com.bubblebear.backendProject.Repository;
+package com.bubblebear.backendProject.repository;
 
 import java.util.List;
 
