@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import com.bubblebear.backendProject.entity.OrdersHasProducts;
 import com.bubblebear.backendProject.service.OrdersHasProductService;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("api/ordershasproducts")
 public class OrdersHasProductsController {

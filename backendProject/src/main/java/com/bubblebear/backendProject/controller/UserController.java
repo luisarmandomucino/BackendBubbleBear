@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 //import com.bubblebear.backendProject.Repository.UserRepository;
 import com.bubblebear.backendProject.entity.User;
 import com.bubblebear.backendProject.service.UserService;
-
+@CrossOrigin(origins = "*")
 @Controller
 @RequestMapping("api/user") //localhost:8080/api/user
 public class UserController {

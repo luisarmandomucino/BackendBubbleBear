@@ -51,10 +51,11 @@ public class WebSecurityConfig {
 		
 		http.authorizeHttpRequests( authorize -> authorize
 				// STEP 2.1 configurar las reglas de autorización para las solicitudes HTTP
-				.requestMatchers( HttpMethod.GET, "/api/products" ).permitAll()
+				.requestMatchers(  "/api/products" ).permitAll()
+				.requestMatchers( "/api/orders" ).permitAll()
 				.requestMatchers( HttpMethod.POST, "/api/v2/users" ).permitAll()
-				.requestMatchers( "/api/orders/**" ).hasRole("ADMIN")
-				.requestMatchers( "/api/v2/users/**" ).hasRole("ADMIN")	
+				//.requestMatchers( "/api/orders/**" ).hasRole("ADMIN")
+				//.requestMatchers( "/api/v2/users/**" ).hasRole("ADMIN")	
 				.anyRequest().authenticated() )
 			.addFilter(jwtAuthenticationFilter)
 			 .addFilterBefore(  jwtAuthorizationFilter , UsernamePasswordAuthenticationFilter.class ) //TODO verificar token
