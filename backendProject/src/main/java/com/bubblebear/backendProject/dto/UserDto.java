@@ -35,7 +35,7 @@ public class UserDto implements UserFieldLimits {
 	@Pattern(message = "Phone number must be a 10-digit number", regexp = "\\d{10}")
 	@Size(min= PHONE_NUMBER_MIN_LENGTH, max=  PHONE_NUMBER_MAX_LENGTH, 
 			message = "Phone Number must be between " +  PHONE_NUMBER_MIN_LENGTH + " and "+ PHONE_NUMBER_MAX_LENGTH + " characters")
-	private String phone_number; 
+	private String phone_number;
 	
 }
 	

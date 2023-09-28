@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bubblebear.backendProject.Repository.UserRepository;
 import com.bubblebear.backendProject.dto.UserDto;
 import com.bubblebear.backendProject.entity.*;
 
@@ -15,29 +16,34 @@ public class UserServiceDtoImpl implements UserDtoService {
 	
 	@Autowired
 	UserService userService;
+	@Autowired
+	UserRepository userRepository;
 	ModelMapper modelMapper = new ModelMapper();
 
 	@Override
-	public UserDto createUserDto(UserDto userDto) {
-		User userMapper = userDtoToUser(userDto);
-		User newUser = userService.createUser(userMapper);
-		return userToUserDto(newUser);
+	public User createUser(User user) {
+			return saveUser(user);
 	}
 	
-	public UserDto userToUserDto(User newUser) {
-		UserDto userDto = modelMapper.map(newUser, UserDto.class);
-		return userDto;
+	public User saveUser(User user) {
+		return userRepository.save(user);
 	}
-
-	public User userDtoToUser(UserDto userDto) {
-		User user = modelMapper.map(userDto, User.class);
-		return user;
-	}
-
+	
 	@Override
 	public UserDto getUserDtoById(long id) {
 		User existingUser = userService.getUserById(id);
 		return userToUserDto(existingUser);
+	}
+	
+		public UserDto userToUserDto(User newUser) {
+		UserDto userDto = modelMapper.map(newUser, UserDto.class);
+		return userDto;
+	}
+	
+
+	public User userDtoToUser(UserDto userDto) {
+		User user = modelMapper.map(userDto, User.class);
+		return user;
 	}
 	
 	@Override
@@ -56,25 +62,20 @@ public class UserServiceDtoImpl implements UserDtoService {
 	}
 
 	@Override
-	public UserDto updateUserDto(UserDto user, long id) {
+	public User updateUserDto(User user, long id) {
 			User existingUser = userService.getUserById(id);
 			existingUser.setFullname(user.getFullname());
 			existingUser.setEmail(user.getEmail());
+			existingUser.setPassword(user.getPassword());
 			existingUser.setBirthday(user.getBirthday());
 			existingUser.setPhone_number(user.getPhone_number());
-		return userToUserDto( userService.createUser(existingUser));
+			userService.updateUser(existingUser, id);
+		return ( userService.createUser(existingUser));
 	}
 	
 	@Override
 	public void deleteUserDto(Long id) {
 		userService.deleteUser(id);
 	}
-	
-
-	
-	
-
-
-	
 
 }

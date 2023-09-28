@@ -47,12 +47,12 @@ public class User implements UserFieldLimits {
 	@Column(name = "phone_number", length = PHONE_NUMBER_DB_LENGTH)
 	private String phone_number;
 	
-	@Column(name = "role")
-	private Boolean role;
+	@Column(name = "role", columnDefinition = "TINYINT default 0")
+	private int role;
 	
 
 	public User(String fullname, String email, String password, 
-			Date birthday, String phone_number, Boolean role) {
+			Date birthday, String phone_number, int role) {
 		this.fullname = fullname;
 		this.email = email;
 		this.password = password;

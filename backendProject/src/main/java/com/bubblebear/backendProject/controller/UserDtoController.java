@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bubblebear.backendProject.dto.UserDto;
+import com.bubblebear.backendProject.entity.User;
 import com.bubblebear.backendProject.service.UserDtoService;
 
 
@@ -27,9 +28,9 @@ public class UserDtoController {
 
 	
 	@PostMapping  //localhost:8080/api/v2/user
-	public ResponseEntity<UserDto> creatUserDto(@Validated @RequestBody UserDto userDto) {
-		UserDto savedUserDto = userDtoService.createUserDto(userDto);
-		return new ResponseEntity<>(savedUserDto, HttpStatus.CREATED);
+	public ResponseEntity<User> creatUserDto(@Validated @RequestBody User user) {
+		User savedUser = userDtoService.createUser(user);
+		return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
 	}
 	
 	
@@ -49,9 +50,9 @@ public class UserDtoController {
 
 	 
 	@PutMapping("{id}")//localhost:8080/api/v2/user/6
-	public ResponseEntity<UserDto> updateUserDto(@RequestBody @Validated UserDto userDto, @PathVariable long id) {
-		UserDto updatedUserDto = userDtoService.updateUserDto(userDto, id);
-		return new ResponseEntity<>(updatedUserDto, HttpStatus.OK);
+	public ResponseEntity<User> updateUser(@RequestBody @Validated User user, @PathVariable long id) {
+		User updatedUser = userDtoService.updateUserDto(user, id);
+		return new ResponseEntity<>(updatedUser, HttpStatus.OK);
 	}
 	
 
