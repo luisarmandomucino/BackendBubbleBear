@@ -6,41 +6,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.bubblebear.backendProject.entity.OrdersHasProducts;
-import com.bubblebear.backendProject.repository.OrdersHasProductsRepository;
+import com.bubblebear.backendProject.service.OrdersHasProductService;
 
 @RestController
 @RequestMapping("api/ordershasproducts")
 public class OrdersHasProductsController {
 
     @Autowired
-    OrdersHasProductsRepository ordersHasProductsRepository;
+    private OrdersHasProductService ordersHasProductService;
 
     @GetMapping
     public List<OrdersHasProducts> getAllOrdersHasProducts() {
-        return (List<OrdersHasProducts>) ordersHasProductsRepository.findAll();
+        return ordersHasProductService.getAllOrdersHasProducts();
     }
 
     @GetMapping("{id}")
     public OrdersHasProducts getOrdersHasProductsById(@PathVariable long id) {
-        OrdersHasProducts entry = ordersHasProductsRepository.findById(id);
-        return entry;
+        return ordersHasProductService.getOrderHasProductById(id, id); // Ajusta según tus parámetros
     }
-
 
     @PostMapping
     public OrdersHasProducts createOrdersHasProducts(@RequestBody OrdersHasProducts newEntry) {
-        return ordersHasProductsRepository.save(newEntry);
+        return ordersHasProductService.createOrderHasProduct(newEntry);
     }
 
     @PutMapping("{id}")
     public OrdersHasProducts updateOrdersHasProducts(@PathVariable long id, @RequestBody OrdersHasProducts updatedEntry) {
-        OrdersHasProducts existingOrder = ordersHasProductsRepository.findById(id);
-        existingOrder.setOrder(updatedEntry.getOrder());
-		return ordersHasProductsRepository.save(existingOrder);
+        return ordersHasProductService.updateOrderHasProduct(updatedEntry, id, id); // Ajusta según tus parámetros
     }
 
     @DeleteMapping("{id}")
     public void deleteOrdersHasProducts(@PathVariable long id) {
-        ordersHasProductsRepository.deleteById(id);
+        ordersHasProductService.deleteOrderHasProduct(id, id); // Ajusta según tus parámetros
     }
-} 
+}
