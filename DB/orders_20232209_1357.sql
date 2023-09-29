@@ -3,8 +3,8 @@ SELECT * FROM bbdatabase.orders;
 
 
 INSERT 
-INTO orders (purchase_date, total_amount, fk_user_id)
-	VALUES ("2023-09-15", 500, 2);
+INTO orders ( total_amount, fk_user_id)
+	VALUES (500, 2);
 INSERT 
 INTO orders (purchase_date, total_amount, fk_user_id)
 	VALUES ("2023-12-14", 250, 1);

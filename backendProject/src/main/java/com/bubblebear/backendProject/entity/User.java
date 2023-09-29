@@ -1,6 +1,8 @@
 package com.bubblebear.backendProject.entity;
 
-import java.util.Date;
+
+
+import java.sql.Date;
 
 import com.bubblebear.backendProject.entity.limits.UserFieldLimits;
 
@@ -41,7 +43,7 @@ public class User implements UserFieldLimits {
 	@Column(name = "password", nullable = false, length = PASSWORD_DB_LENGTH)
 	private String password;
 	
-	@Column(name = "birthday" )
+	@Column(name = "birthday" ,columnDefinition="DATE")
 	private Date birthday;
 	
 	@Column(name = "phone_number", length = PHONE_NUMBER_DB_LENGTH)
