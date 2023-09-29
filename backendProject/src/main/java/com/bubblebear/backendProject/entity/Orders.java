@@ -1,6 +1,8 @@
 package com.bubblebear.backendProject.entity;
 
-import java.util.Date;
+
+
+import java.sql.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,6 +29,7 @@ public class Orders {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column( nullable = true)
 	private Integer order_id;
+	
 	private Date purchase_date;
 	private int total_amount;
 	@Column( nullable = true)

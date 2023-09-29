@@ -1,5 +1,9 @@
 package com.bubblebear.backendProject.entity;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 //import lombok.AllArgsConstructor;
@@ -35,6 +39,11 @@ public class OrdersHasProducts {
     
     @Column(name = "fk_order_id", nullable = false)
     private int order;
+    
+//    @ManyToOne
+//	@JoinColumn(name="fk_order_id")
+//	@JsonIgnoreProperties("orders_has_products")
+//	private Orders orders;
 
     
 }
