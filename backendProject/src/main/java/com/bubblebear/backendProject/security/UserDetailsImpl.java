@@ -7,11 +7,12 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.bubblebear.backendProject.entity.User;
 
 import lombok.extern.log4j.Log4j2;
-
+@CrossOrigin(origins = "*")
 @Log4j2
 public class UserDetailsImpl implements UserDetails {
 

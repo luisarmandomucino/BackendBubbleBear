@@ -4,6 +4,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.bubblebear.backendProject.security.UserDetailsImpl;
 import com.fasterxml.jackson.core.exc.StreamReadException;
@@ -17,7 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
 import org.json.JSONObject;
-
+@CrossOrigin(origins = "*")
 @Log4j2
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter  {
 

@@ -2,12 +2,15 @@ package com.bubblebear.backendProject.implementation;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.bubblebear.backendProject.entity.Product;
 import com.bubblebear.backendProject.repository.ProductRepository;
 import com.bubblebear.backendProject.service.ProductService;
+@CrossOrigin(origins = "*")
 @Service
 public class ProductServiceImpl implements ProductService{
 	@Autowired

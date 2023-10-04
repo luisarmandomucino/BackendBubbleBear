@@ -17,6 +17,7 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	
 
 	@PostMapping  //localhost:8080/api/user
 	public ResponseEntity<User> creatUser(@Validated @RequestBody User user) {

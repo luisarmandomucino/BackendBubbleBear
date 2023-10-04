@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -31,8 +32,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
+@CrossOrigin(origins = "*")
 @Configuration
-@EnableWebSecurity
+//@EnableWebSecurity
 public class WebSecurityConfig {
 	
 	@Autowired
@@ -46,7 +48,7 @@ public class WebSecurityConfig {
 		
 		JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter();
 		jwtAuthenticationFilter.setAuthenticationManager( authManager );
-		jwtAuthenticationFilter.setFilterProcessesUrl("/login");
+		//jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 		
 		
 		http.authorizeHttpRequests( authorize -> authorize
@@ -58,9 +60,11 @@ public class WebSecurityConfig {
 				.requestMatchers(  "/api/ordershasproducts/**" ).permitAll()
 				.requestMatchers(  "/api/categories/**" ).permitAll()
 				.requestMatchers(  "/api/categories" ).permitAll()
+				.requestMatchers(  "/login" ).permitAll()
 				//.requestMatchers( HttpMethod.POST, "/api/products" ).permitAll()
 				.requestMatchers( "/api/orders" ).permitAll()
 				.requestMatchers( "/api/user" ).permitAll()
+				.requestMatchers( "/**" ).permitAll()
 				.requestMatchers( "api/ordershasproducts" ).permitAll()
 				//.requestMatchers( HttpMethod.POST, "/api/v2/users" ).permitAll()
 				//.requestMatchers( "/api/orders/**" ).hasRole("ADMIN")
@@ -89,26 +93,25 @@ public class WebSecurityConfig {
 		
 	
 	// STEP 2 Autenticación basada en usuarios en memoria
-	/*
-	@Bean
-	UserDetailsService userDetailsService() {
-		
-		UserDetails edwin = User.builder()
-				.username("edwin@ninja.com")
-				.password( passwordEncoder().encode("123")   )
-				.roles("ADMIN")
-				.build();
-				
-		UserDetails lalo = User.builder()
-				.username("eduardo")
-				//.password("{noop}456")
-				.password( passwordEncoder().encode("456")   )
-				.roles("CUSTOMER", "SAYAJIN") // "ROLE_CUSTOMER"
-				.build();
-		
-		return new InMemoryUserDetailsManager( edwin, lalo)  ;
-	}*/
-	
+//	
+//	@Bean
+//	UserDetailsService userDetailsService() {
+//		
+//		UserDetails edwin = User.builder()
+//				.username("edwin@ninja.com")
+//				.password( passwordEncoder().encode("123")   )
+//				.roles("ADMIN")
+//				.build();
+//				
+//		UserDetails lalo = User.builder()
+//				.username("eduardo")
+//				//.password("{noop}456")
+//				.password( passwordEncoder().encode("456")   )
+//				.roles("CUSTOMER", "SAYAJIN") // "ROLE_CUSTOMER"
+//				.build();
+//		
+//		return new InMemoryUserDetailsManager( edwin, lalo)  ;
+//	}
 	// STEP 3 Leer usuarios de la DB
 	@Bean
 	AuthenticationManager authManager(HttpSecurity http, PasswordEncoder passwordEncoder) throws Exception {

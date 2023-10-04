@@ -34,7 +34,7 @@ public class User implements UserFieldLimits {
 	@Column(name = "user_id")
 	private int id;
 	
-	@Column(name = "fullname", nullable = false, length = FULLNAME_DB_LENGTH)
+	@Column(name = "fullname", nullable = true, length = FULLNAME_DB_LENGTH)
 	private String fullname;
 	
 	@Column(name = "email", nullable = false, length = EMAIL_DB_LENGTH, unique = true)
@@ -43,13 +43,13 @@ public class User implements UserFieldLimits {
 	@Column(name = "password", nullable = false, length = PASSWORD_DB_LENGTH)
 	private String password;
 	
-	@Column(name = "birthday" ,columnDefinition="DATE")
+	@Column(name = "birthday"  , nullable = true, columnDefinition="DATE")
 	private Date birthday;
 	
-	@Column(name = "phone_number", length = PHONE_NUMBER_DB_LENGTH)
+	@Column(name = "phone_number", nullable = true, length = PHONE_NUMBER_DB_LENGTH)
 	private String phone_number;
 	
-	@Column(name = "role", columnDefinition = "TINYINT default 0")
+	@Column(name = "role", nullable = true, columnDefinition = "TINYINT default 0")
 	private int role;
 	
 

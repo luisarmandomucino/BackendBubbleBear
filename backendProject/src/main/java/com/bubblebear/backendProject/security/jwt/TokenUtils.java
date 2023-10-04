@@ -10,12 +10,14 @@ import java.util.Map;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
+@CrossOrigin(origins = "*")
 public class TokenUtils {
 	
 	private final static String ACCESS_TOKEN_SECRET = "crR/lggroR-o6?qFOpAuTTRkt!aGW49wsys5mwkJP9YnLNVPuuJ2Z!jXiJGGzULqmIgWltkfcYQD/twTzCo/zb/wt=jVP/2NjFd2aVc!uKpdNiDB48-lNFRNTZ7i2L36ZCEhUWUDYtkGjG3BDZcA5SSJzRYClKvAZjLGGUx5MW8ZZUj7iSVv!3eA4BcayMr6IdjxPZqIU7h0?JcsI3mohEFlFHb2MCRJRvNDsey3mHMbcQfH5ChVz!FzJjIlMsVY";

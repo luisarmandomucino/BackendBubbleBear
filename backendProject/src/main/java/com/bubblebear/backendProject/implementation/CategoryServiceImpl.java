@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.bubblebear.backendProject.entity.Categories;
 import com.bubblebear.backendProject.repository.CategoriesRepository;
 import com.bubblebear.backendProject.service.CategoryService;
 
 import jakarta.persistence.EntityNotFoundException;
-
+@CrossOrigin(origins = "*")
 @Service
 public class CategoryServiceImpl implements CategoryService {
     @Autowired

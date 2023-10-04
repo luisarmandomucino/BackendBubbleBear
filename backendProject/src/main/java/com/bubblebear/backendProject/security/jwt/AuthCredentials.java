@@ -1,7 +1,9 @@
 package com.bubblebear.backendProject.security.jwt;
 
-import lombok.Data;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+import lombok.Data;
+@CrossOrigin(origins = "*")
 @Data
 public class AuthCredentials {
 	public String email;
